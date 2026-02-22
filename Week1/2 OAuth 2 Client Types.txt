@@ -1,0 +1,105 @@
+OAuth 2 Client Types: 
+
+1- Native Apps on User Device : Mobile app 
+2- Secure app running on Server : Java code or other code than request to Auth server 
+3- Single Page Browser-based app : app run on the browser 
+
+how does it work :
+
+in order to Client can communication with Auth Server, All the client need to be register withត្រូវការភ្ចាប់ជាមួយ Authorization Server: get Client ID and secrete key 
+
+- សំខាន់ គ្រប់ client types យើងមិនអនុញ្ញាត្តិអោយវាធ្វើការ រក្សាទុក secrete key បាននោះទេ ចឹងហើយបានគេបែងចែកវា ជាពីរ ប្រភេទសម្រាប់ client type 
+
++ Confidential client : Secure app : Can keep Client Secret in safe place 
+
++ Public Client : Native and Single Page : Can not keep the Client ID and the Client 
+secret safe 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

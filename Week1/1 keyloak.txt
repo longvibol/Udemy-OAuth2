@@ -1,0 +1,37 @@
+Spring Security 5 have : (specification of OAthu2) អ្នកចង់ប្រើ Standard នឹងត្រូវមាន​បីខាងក្រោមនឹង
+
+1- Cilent Support 
+2- Resource Server 
+3- Authorization server (sprint not yet have so we use Keycloak)
+
+--------------------
+
+Why keycloak : for Authorization server 
+
+- Free, open-source authorization server 
+- Fully support OAuth 2
+- Production Ready 
+
+In solution :
+
+Keycloak (Authorization Server) អ្នកបង្កើត Token អោយ Client ត្រូវប្រើសម្រាប់ Spring Authoriztion Server)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

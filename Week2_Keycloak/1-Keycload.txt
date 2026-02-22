@@ -1,0 +1,47 @@
+Keycload:
+
+1- create user admin when see the welcome page : this is the root user (supper user)
+
+2- Create realm : this is the user below the root user than manage other user (admin user)
+
+3- Create user account :
+
+in the realm user -> users -> Create -> Add user -> Credentials 
+
+- We can create user by two ways :
+
+1- with keycloak admin 
+2- by terminal command window : or post request from json 
+
+
+4- test login with new user login 
+
+http://localhost:8080/realms/adminapps/account/
+
+
+- user : vibollong
+- password default then we will change the password 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
