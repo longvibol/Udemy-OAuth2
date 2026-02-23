@@ -1,0 +1,20 @@
+- Access Token : client take to API 
+
+What it is: A token the client sends to an API to prove it’s allowed to access protected resources.
+Used for: Calling APIs (e.g., GET /me, POST /orders).
+Lifetime: Usually short (minutes to ~1 hour).
+Where it’s sent: In the Authorization header
+
+- Refresh token : Client create : យើងស្នើរសុំទៅ Auth server ហើយគឺបានហើយដោយត្រូវភ្ជាប់មកជាមួយ 
+
+code verify and code challeng 
+
+What it is: A token used to obtain a new access token without requiring the user to sign in again.
+Used for: Calling the authorization server’s token endpoint, not your resource API.
+Lifetime: Usually longer (hours/days/weeks), sometimes “until revoked”.
+Where it’s sent: Only to the token endpoint, never to normal APIs.
+
+
+- Client Credentials : machine take to Machine Requests 
+
+Microserver take to Microservice 
