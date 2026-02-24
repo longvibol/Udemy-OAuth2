@@ -1,0 +1,25 @@
+package com.vibol.api.ResourceServer.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+// Use to enable spring security
+public class WebSecurity {
+
+    @Bean
+    SecurityFilterChain configure(HttpSecurity http) throws Exception{
+        return http.build();
+    }
+}
+
+
+- SecurityFilterChain : is the class that filter all the incoming request and the HttpSecurity class is create the security filer (it is the builder class)​ វាជួយយើងអាចអោយយើងដាក់ applicaotn ដែលយើងចង់ធ្វើការ Filter 
+
+- @Bean : spring will register this SecurityFilterChain to the spring application context
+
+ចឹងអោយតែ object ណាដែល implement SecurityFilterChain វានឹងដាក់ security 

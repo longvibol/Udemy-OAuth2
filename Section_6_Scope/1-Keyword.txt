@@ -1,0 +1,85 @@
+- Scope : គឺទីជាការកំណត់បច្ចេកទេសនៅក្នុង OAuth 2 ដើម្បីអនុញ្ញាត្តិអោយ អ្នកប្រើប្រាស់ (application's access)អាចប្រើប្រាស់កម្មវិធីយើងបាន។
+
+- application can request one or more scopes, ដែលពត៌មានទាំងអស់នឹងត្រូវបានយល់ព្រមពីការបើកកម្មវិធីប្រើប្រាស់ និង ត្រូវមាន Access token 
+
+- openId is build on top of Auth 2 (the implementation of Autho 2)
+
+when request : &scope= openId profile email address phone offine_access
+
++ openId : to tell the Auth Server is that the client application is make the openId request 
++ the 2nd scope is : profile : (name, family_name, given_name, middle_name....) មានន័យថា client application អាចធ្វើការ access to the these information) 
+
++ email scope : tell the Auth server the client applicion can access :email, email_verify they have been verify or not 
+
++ address: this scope is allow the client application to get the information user address 
+
++ phone : phone (allow client app to get phone) and phone_number_verify (to get the information this phone number is verify or not).
+
+
++ offine_access : allow the client application to get the Refresh token (ពេលដែលវា ផុតកំនត់វាអាចធ្វើការស្នើរសុំបានឡើងវិញ)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
