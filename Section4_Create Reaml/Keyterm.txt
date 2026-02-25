@@ -1,0 +1,26 @@
+- Realm is like a tenant (storage or space) in Keycloak server. កន្លែងបង្កើត Server នៅពីក្រោម User
+
+It is a space that allows us to manage a set of users, their roles and their credentials.
+
+So when the user logs in, they log in into this space, they log in, into this realm and users in
+
+one realm, they are isolated from users, from another realm on the server.
+
+--------------------------
+
+
+- A tenant = a Realm in Keycloak.
+
+A Realm is an isolated space where you manage:
+
+Users
+
+Roles
+
+Groups
+
+Clients (applications)
+
+Authentication settings
+
+Each realm is completely separated from others.

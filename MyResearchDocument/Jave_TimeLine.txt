@@ -1,0 +1,19 @@
+1- 2003: Spring Framework (Java) is born. It was a protest against how "heavy" and "hard" official Java was. It introduced Dependency Injection, making code much easier to test.
+
+2- 2014: Keycloak and Spring Boot are released. 
+
+==> Spring Boot made the Spring Framework "auto-configure," so you could start a project in seconds.
+
+==> Keycloak became the "all-in-one" server to handle OAuth2 and OpenID Connect.
+
+What we are now in 2026:
+
+- Language 	: Java 21/25		: The base logic.
+- Framework	: Spring Boot 3+	: The structure of the app.
+- Data		: Hibernate / JPA	: Talking to the database.
+- Security	: Spring Security	: Connecting to the gatekeeper.
+
++ Gatekeeper	: Keycloak		: Managing the users and tokens.
+
+
+
