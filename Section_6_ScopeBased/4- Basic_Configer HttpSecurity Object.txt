@@ -1,0 +1,47 @@
+@Bean
+    SecurityFilterChain configure(HttpSecurity http) throws Exception{
+        http.authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+        return http.build();
+    }
+
+
+-  http.authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+
+- យើងបង្កើត object from http request ដែលគេបោះចូលមក ដោយតម្រូវអោយទាំងអស់ត្រូវធ្វើការ Access មកបានតម្រូវអោយមាន authenticated បញ្ជាក់ថា អ្នកប្រើប្រាស់មានសិទ្ធអ្វីខ្លះ
+
+- .oauth2ResourceServer( oauth2 -> oauth2.jwt(jwt ->{})); ប្រាប់ថាobject request មកនឹងយើងត្រូវការ ជា JWT 
+
++ oauth2ResourceServer : the method that is called "oauth2ResourceServer", this method is telling your application, Hey,
+
+we are going to be a resource server that follows OAuth two rules and the lambda function that it accepts
+
+អាណាចូលមក ប្រាប់វាថា អ្នកឯងចូលមកនឹង ដើម្បីធ្វើការ Request នឹងជា Resource Server យើងខ្ញុំប្រើប្រាស់ OAuth.2 ហើយ oauth2 របស់យើងនឹងគីត្រូវការ JSON Web Token 
+
+------------------------------------- Summary 
+
+.oauth2ResourceServer( oauth2 -> oauth2.jwt(jwt ->{}));
+
+So to summarize, this line of code says My application is a resource server that follows OAuth two
+
+rules and it expects to receive JWT tokens for security.
+
+
+-----------------------------  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

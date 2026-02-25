@@ -1,0 +1,142 @@
+1- SecurityFilterChain : spring security allows us to add different security features to our application, 
+
+and it uses a chain of filters, each of which performs a specific security operation on the incoming request.
+
+- spring security វាអាចអោយយើងធ្វើការ ដាក់ security features to the applicatoin ហើយវាប្រើប្រាស់ការដាក់តគ្នានេះសម្រាប់ Filter ចឹងវាធ្វើការត្រូតពិនិត្យទៅលើ ការ Request មកមួយនឹង ទាំងអស់
+
+យើងអាច Chin (ការ Filter តគ្នានឹង វាត្រូវបានប្រើប្រាស់ដោយ interface) មានន័យថា  The return data type is SecurityFilterChain
+
+
+- The return data type of "SecurityFilterChain" this method is security filter chain.
+
+ @Bean
+    SecurityFilterChain configure(HttpSecurity http) throws Exception{
+        return http.build();
+    }
+
+
+- HttpSecurity គឺជា Class builder ដែលយើងយកមកដើម្បីដាក់ Filter Chain 
+
+- http.build() គឺជា Method នៅក្នុង HttpSecurity ដែលយើងហៅដើម្បីបង្កើត instance of security filter chain object មានន័យថា instance security របស់យើងវាខុសគ្នា ចឹងដើម្បីបង្កើត 
+
+- យើងដាក់ @Bean : មានន័យថាយើង បង្កើត Object បន្ទប់ពីយើងដាក់ Filter Chain ហើយវាចុះឈ្មោះ ចូលក្នុងspring application context។
+ដាក់   spring will execute this method and it will register the return object as a bin, which it will also
+
+add to the spring application context.
+
+------------------------------
+
+សរុបមកយើងអាចដាក់ Object ដែលយើងបានបង្កើតនឹងសម្រាប់ an object that implements spring filter chain interface will be placed into spring application context, and this will allow spring to manage this object and make it available
+
+to other components that are used to handle incoming Http requests.
+
+---------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+​
