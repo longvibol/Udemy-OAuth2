@@ -1,3 +1,7 @@
+1- in the spring boot project:
+
+- Create 
+
 package com.vibol.api.ResourceServer.security;
 
 import org.springframework.context.annotation.Bean;
