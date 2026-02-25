@@ -1,0 +1,83 @@
+@Configuration
+@EnableWebSecurity ដាក់ក៏បានអត់ក៏បាន
+public class WebSecurity {
+
+    @Bean
+    SecurityFilterChain configure(HttpSecurity http) throws Exception{
+        // Create object with filter chain
+        http.authorizeHttpRequests(authz ->
+                        authz
+                                .requestMatchers(HttpMethod.GET,"/users/status/check").hasAuthority("SCOPE_profile")
+                                .anyRequest().authenticated())
+                .oauth2ResourceServer( oauth2 -> oauth2.jwt(jwt ->{}));
+        return http.build();
+    }
+}
+
+
+-  .requestMatchers(HttpMethod.GET,"/users/status/check").hasAuthority("SCOPE_profile") វាប្រាប់ទៅ Spring security ថាបើមានអ្នក Request មកជា GET Method ហើយមាន អត្តសញ្ញាត្តិសំគាល់ជា profile scop គេអាច Request Resource បាន​ (ត្រូវតែមាន scope ជា profile បានអាចអោយចូលបាន)
+
+- Spring security will inspect and validate the JWT ( It will check if access token is valid and if Json web token was authorized for profile access scope)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
