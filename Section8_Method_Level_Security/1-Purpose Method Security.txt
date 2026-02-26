@@ -1,0 +1,165 @@
+Method-Level-Security: 
+
+- យើងដាក់លក្ខណអាចអោយ User access បានកំរិតណាលើ ការប្រើប្រាស់ Method (feature) 
+
+- We use @Secured ដើម្បីដាក់កំណត់លើ Method ណាដែលអាចមានសិទ្ធប្រើប្រាស់បាន
+
+Ex: @Secured("DELETE_AUTHORITY") អោយតា User ណាដែលមាន Authority Delete ចឹងវាអាចប្រើប្រាស់ Method នឹងបាន
+
+@Secured("DELETE_AUTHORITY”)
+@Transactional
+
+public ResponseEntity deleteUser(@PathVariable String id) {
+
+--------------------------------------- This is what we put in the controller class 
+
+2- We put on the Method level 
+
+@PreAuthorize("hasAuthority((DELETE_AUTHORITY’) or #id == principal.userld")
+
+@DeleteMapping(path = "/{id}")
+public ResponseEntity deleteUser(@PathVariable String id) {
+
+}
+
+
+- @PreAuthorize : យើងអាចដាក់ expression ហើយវាមានកំរិតខ្លាំជាងគេ users with admin authority or by user who actually owns this user profile. 
+
+The "@pre" authorized notation is more advanced annotation and it supports the expression based access
+
+Ex: All other users will be denied access. with @PreAuthorize មានតែ ID នឹងទេដែលអាចធ្វើការ Deleted នេះបាន
+
+
+- @PostAuthorize : វាអាចអោយគេធ្វើការមុនបាន បន្ទាប់មកបានវាមើលទៅកាន់ Security បន្តទៀត
+- returnObject : it is the function inside it (ចឹងវាមើលថាបើវា មិនមានសិទ្ធទេវាមិនអោយ ប្រើប្រាស់ Method នឹងទេ)
+
+-------------------------
+
+
+@PostAuthorize("hasRole(‘ADMIN’') or returnObject.userld == principal.userld")
+@GetMapping(path = "/{id}")
+public UserRest getUser(@PathVariable String id) {
+
+UserRest returnValue = new UserRest();
+
+// some code here
+
+return returnValue;
+
+
+------------------------
+
+
+3- level of effective 
+
+@RestController
+@Secured("ROLE_ADMIN")
+public class UsersController {
+
+@PreAuthorize("permitAll")
+
+@GetMapping("/users/status/check")
+
+public String usersStatusCheck() {
+return "Working for users";
+
+}
+
+@GetMapping("/managers/status/check")
+public String managersStatusCheck() {
+return "Working for managers";
+}
+}
+
+ខាងលើនឹងវា class level and method level (គេគិត Method lever first then Class level) 
+
+
+https://docs.enterprise.spring.io/spring-security/reference/servlet/authorization/expression-based.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
