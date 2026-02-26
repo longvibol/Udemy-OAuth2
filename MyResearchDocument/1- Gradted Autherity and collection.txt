@@ -1,0 +1,106 @@
+1. Java Collection (The Container) គិតវាដូចជា កន្លែងផ្ទុក ទិន្នន័យ ដែលដាក់នូវ multiple elements into a single unit. 
+
+- In Java, 
+a Collection is essentially a specialized container—an object that groups multiple elements into a single unit.
+
+
+ដាក់ចឹងដើម្បីស្រួលធ្វើការ រក្សារទុក, ទាញវាមកវិញ និងធ្វើការកែប្រែ សំខាន់គឺយើងមិនបាច់ខ្វល់ទៅលើទំហំវានោះទេ 
+
+Ex: បើយើងប្រើ Array យើងត្រូវបង្កើត Size វាមុន ចឹងបើវាត្រូវការបន្ថែមទៀត វានឹងពិបាកធ្វើការកែប្រែ តែបើយើងបង្កើតវាក្នង Container then put the element inside that container it can manage. 
+
+
+1.1 The Collection Interface and the Collections Framework.
+
+
+- The Interface: A single "blueprint" that defines the basic operations (adding, removing, clearing) for most data structures in Java.
+
+
+- The Framework: A unified architecture that includes interfaces, implementations (classes like ArrayList), and algorithms (like sorting or searching).
+
+
+--------------------------------------------------------
+
+ចាំនៅក្នុង Jave : Interface (The "Blueprint")
+
+វាជាកុងត្រាដែលប្រាប់ទៅ class ដែល implement វាថាត្រូវធ្វើអ្វីខ្លះ សម្រាប់ class នឹង។ តែត្រូវចាំ Interface នឹងវាមិនមែនជាអ្នកប្រាប់ ពីររបៀបធ្វើនោះទេ 
+
+In Java, an Interface is a contract. It tells a class what to do, but not how to do it.
+
+ចឹងចេះ បើវាយក collection មក Implement វាត្រូវតែអាចធ្វើបាននូវ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
