@@ -20,6 +20,12 @@ public class UsersController {
         return "Working...";
     }
 
+    @GetMapping("/status/check1")
+    public String status1(){
+        log.info("Request From scope profile");
+        return "Working 1...";
+    }
+
 //    @PreAuthorize("hasAuthority('ROLE_developer') or #id == #jwt.subject")
     @PreAuthorize("#id == #jwt.subject")
 //    @PreAuthorize("hasRole('developer')")
