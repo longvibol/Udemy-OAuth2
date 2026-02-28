@@ -1,0 +1,91 @@
+យើងចង់ដាក់លក្ខណ អ្នក Access មក Method នឹងទាល់តែមាន Role developer or have ID ទើបអាចអោយវាចូលប្រើបាន
+
+- Read Id from the jwt
+
+- User Id :  "sub": "80373687-a5e1-43d6-bbd8-36d421e760c5" it is from JWT token 
+
+- In order to inject (យកវាមកប្រើ)
+
+==> We use authentication principle 
+
+
+    @PreAuthorize("hasAuthority('ROLE_developer') or #id == #jwt.subject")
+    @DeleteMapping(path="/{id}")
+
+    public String deletedUser(@PathVariable String id, @AuthenticationPrincipal Jwt jwt){
+        return "Deleted user with id: " + id + " and JWT subject " + jwt.getSubject();
+    }
+
+}
+
+
+យើងដាក់វា នៅក្នុង Controller 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

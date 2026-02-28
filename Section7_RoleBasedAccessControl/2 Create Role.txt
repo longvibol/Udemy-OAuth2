@@ -1,0 +1,228 @@
+- In spring the way they look in that inside the JWT ចឹង Spring បានធ្វើការ create converter class to check in side the JWT
+To get only the ROLE text បន្ទាប់មក Spring នឹងធ្វើការ ផ្តល់សិទ្ធទៅអោយ វា Grandted Autherity (list)
+
+
+---------------------
+
+
+យើងបង្កើត Converter class ដែលអាចធ្វើការ ទាញយកតែ List of Role from JWT មិនមែនតែ Keyloak ទេ យើងអាចប្រើ Class នឹងដើម្បីធ្វើការ ទាញយកពី Auth Server ផ្សេងក៏បានដែល 
+
+
+--------------------------------
+
+package com.vibol.api.ResourceServer.security;
+
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.jwt.Jwt;
+
+import java.util.Collection;
+import java.util.List;
+
+public class KeyCloakConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+    @Override
+    public Collection<GrantedAuthority> convert(Jwt source) {
+        return List.of();
+    }
+}
+
+
+---------------------------
+
+- Jwt source : from Jwt object we can get access to the token it self or we can read the specific clam in the JWT contain 
+
+
+==> from the token : we can get the role :
+
+{
+  "exp": 1772113856,
+  "iat": 1772077878,
+  "auth_time": 1772077856,
+  "jti": "onrtac:7a7a7f93-e3c4-9a8d-5b77-e20c41ed3f2c",
+  "iss": "http://localhost:8080/realms/adminapps",
+  "aud": "account",
+  "sub": "80373687-a5e1-43d6-bbd8-36d421e760c5",
+  "typ": "Bearer",
+  "azp": "photo-app-code-flow-client",
+  "sid": "4r_Pmx7N_IC7n_XFStzDcXmd",
+  "acr": "1",
+  "allowed-origins": [
+    "http://localhost:8083"
+  ],
+  "realm_access": {
+    "roles": [
+      "offline_access",
+      "default-roles-adminapps",
+      "developer",
+      "uma_authorization"
+    ]
+  },
+  "resource_access": {
+    "account": {
+      "roles": [
+        "manage-account",
+        "manage-account-links",
+        "view-profile"
+      ]
+    }
+  },
+  "scope": "openid profile",
+  "name": "vibol long",
+  "preferred_username": "vibollong",
+  "given_name": "vibol",
+  "family_name": "long"
+}
+
+==> this is JWT : json object ដើម្បីធ្វើការ Access to the "realm_acceess": 
+
+
+After crate converter class:
+
+----------------------------
+
+public class KeyCloakConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+    @Override
+    public Collection<GrantedAuthority> convert(Jwt jwt) {
+        // this class will convert the Jwt object to the GrantedAuthority object
+        Map<String, Object> realmAccess = (Map<String, Object>) jwt.getClaims().get("realm_access");
+
+        if (realmAccess == null || realmAccess.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        Collection<GrantedAuthority> returnValue = ((List<String>) realmAccess.get("roles"))
+                .stream().map(roleName -> "ROLE_" + roleName)
+                .map(SimpleGrantedAuthority::new) កន្លែងនឹងមានន័យថាយើងបង្កើត Object ទៅតាម Instance មួយៗដោយវាមានដាក់ Role ចូលក្នុង list នឹង
+                .collect(Collectors.toList());
+        return returnValue;
+    }
+}
+
+
+---------------------------------
+
+"realm_access": {
+    "roles": [
+      "offline_access",
+      "default-roles-adminapps",
+      "developer",
+      "uma_authorization"
+    ]
+  },
+
+
+--> Json key = "realm_access"
+--> we get the "roles" key ==> then we keep it in the list (.collect(Collectors.toList());) 
+
+
+បន្ទាប់មកយើង add this converter to the WebSecurity class 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

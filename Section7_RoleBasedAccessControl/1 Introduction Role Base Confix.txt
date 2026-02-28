@@ -1,0 +1,19 @@
+- What is Role and Authority 
+- How to configure
+- What is the different Role and Authority
+
+---------------------------------
+
+
+- Row is the group of Autherity : តួនាទី គឺជាសិទ្ធដែល user មាន
+
+- in spring framework : បើយើងចង់បង្កើត role ត្រូវប្រើ ROLE_ADMIN
+
+==> គេប្រើ has Role function = hasRole("ADMIN") or hasAuthority("ROLE_AMIN") : យើមិនបាច់ដាក់​ ROLE ពីមុខក៏បានដែលដោយសារ Spring framework វាស្គាល់ហើយ។
+
+- In both two function check the Role : hasRole() and hasAuthority() it is the Collection<GrantedAuthority> 
+
+- Granded ការផ្តល់សិទ្ធិ 
+
+
+ 
