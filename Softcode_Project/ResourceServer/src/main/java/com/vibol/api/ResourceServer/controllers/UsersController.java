@@ -14,16 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class UsersController {
 
+
     @GetMapping("/status/check")
     public String status(){
         log.info("Request From scope profile");
-        return "Working...";
-    }
-
-    @GetMapping("/status/check1")
-    public String status1(){
-        log.info("Request From scope profile");
-        return "Working 1...";
+        return "Working ...";
     }
 
 //    @PreAuthorize("hasAuthority('ROLE_developer') or #id == #jwt.subject")
