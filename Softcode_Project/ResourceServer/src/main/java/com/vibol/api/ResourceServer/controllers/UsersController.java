@@ -17,7 +17,7 @@ public class UsersController {
     @GetMapping("/status/check")
     public String status(){
         log.info("Request From scope profile");
-        return "Working...";
+        return "Working... from Resource Server";
     }
 
 //    @PreAuthorize("hasAuthority('ROLE_developer') or #id == #jwt.subject")

@@ -1,11 +1,15 @@
-spring:
-  application:
-    name: ResourceServer
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: http://localhost:8080/realms/adminapps/protocol/openid-connect/certs
 server:
-  port: 8081
+  port: 8082
 
+spring:
+  cloud:
+    gateway:
+      mvc: # THIS IS MANDATORY FOR THE WEBMVC STARTER
+        routes:
+          - id: users-status-check
+            uri: http://localhost:8081
+            predicates:
+              - Path=/users/status/check
+              - Method=GET
+            filters:
+              - RemoveRequestHeader=Cookie
