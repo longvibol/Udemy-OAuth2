@@ -1,0 +1,82 @@
+- Create DiscoveryService add dependany both : Eureka Server and Client because it can talk to each other and get the register from the other Microservice 
+
+
+- create bootstrap.properties : starter before application.properties 
+
+----------------
+
+Configure Eureka:
+
+- ​server.port=8010 : port number of Eureka 
+
+- eureka.client.register-with-eureka=false សម្រាប់ Server នឹងមិនអោយចុះឈ្មោះជាមួយ Eureka ផ្សេងទេ ព្រោះវា ជា Eureka server ហើយ ដោយសារតែពេលវា បើកមក វាធ្វើការ Register ដោយខ្លួនឯងផ្ទាល់ Do NOT register itself as a client in Eureka.
+ 
+- eureka.client.fetch-registry=false  (Do NOT fetch the service registry from Eureka.)
+
+- logging.level.com.netflix.eureka=OFF (This disables logs related to: Netflix Eureka internal classes)
+
+- logging.level.com.netflix.discovery=OFF (This disables logs related to: Netflix Discovery client internals)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
