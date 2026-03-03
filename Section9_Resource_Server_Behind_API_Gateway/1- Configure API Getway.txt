@@ -1,17 +1,6 @@
-add icon.ico to the Window Icon, Taskbar Icon, Executable Icon
-
-
-
 server:
   port: 8082
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: users-status-check
-          uri: http://localhost:8081
-          predicates:
-            - Path=/users/status/check
-            - Method=GET
-          filters:
-            - RemoveRequestHeader=Cookie
+
+app:
+  resourceserver:
+    base-url: http://localhost:8081
