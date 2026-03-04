@@ -1,6 +1,6 @@
 spring:
   application:
-    name: albums
+    name: Albums
   security:
     oauth2:
       resourceserver:
