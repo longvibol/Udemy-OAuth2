@@ -1,0 +1,11 @@
+1-ApiGateWay : 8082
+2-ResoruceServer :
+3-Albums : 8091
+4-Photos : 
+5-Discovery : 
+
+- analyze : To anybody 
+
+- firefore : 
+
+

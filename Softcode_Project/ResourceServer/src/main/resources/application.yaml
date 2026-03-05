@@ -6,6 +6,23 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8080/realms/adminapps/protocol/openid-connect/certs
-server:
-  port: 8081
+  cloud:
+    loadbalancer:
+      cache:
+        enabled: true
+        ttl: 5s
 
+server:
+  port: 0  # Ensure this is intentional for random port allocation
+
+# Eureka Connection
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+      registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}  # Ensure this is correctly formatted
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+    

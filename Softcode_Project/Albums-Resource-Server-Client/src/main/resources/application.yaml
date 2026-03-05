@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Albums
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/adminapps/protocol/openid-connect/certs
+server:
+  port: 8091
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 30 # Adjust this interval
+    leaseExpirationDurationInSeconds: 90 # Adjust expiration time

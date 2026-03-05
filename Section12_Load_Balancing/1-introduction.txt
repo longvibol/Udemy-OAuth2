@@ -1,0 +1,14 @@
+- Load Balancing : when we have more than one instance of our service it will difficult to handle load balance that why we need to register the service to the Eureka by putting the name ( we no need provide Eureka with address and port) 
+
+- Spring Cloud API Gateway : will handle the load-balancer Client
+
+
+
+
+
+
+
+
+
+
+
