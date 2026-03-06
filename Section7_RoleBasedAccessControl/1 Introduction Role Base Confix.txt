@@ -5,7 +5,7 @@
 ---------------------------------
 
 
-- Row is the group of Autherity : តួនាទី គឺជាសិទ្ធដែល user មាន
+- Role is the group of Autherity : តួនាទី គឺជាសិទ្ធដែល user មាន
 
 - in spring framework : បើយើងចង់បង្កើត role ត្រូវប្រើ ROLE_ADMIN
 

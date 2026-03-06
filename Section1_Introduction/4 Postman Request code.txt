@@ -1,6 +1,7 @@
 4 why we need to request from brower to get the code from keyloak: 
 
 - ដោយសារតែ Postmain is the machine request to the resource server that buy it can not provide that sensitive data 
+
 - វាត្រូវអោយ មនុស្សជាអ្នកយកវាដោយខ្លូនឯង
 
 http://localhost:8080/realms/adminapps/protocol/openid-connect/auth?client_id=photo-app-code-flow-client&response_type=code&scope=openid profile&redirect_uri=http://localhost:8083/callback&state=randomGenerate
