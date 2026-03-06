@@ -25,12 +25,12 @@ public ResponseEntity deleteUser(@PathVariable String id) {
 
 - @PreAuthorize : យើងអាចដាក់ expression ហើយវាមានកំរិតខ្លាំជាងគេ users with admin authority or by user who actually owns this user profile. 
 
-The "@pre" authorized notation is more advanced annotation and it supports the expression based access
+The "@pre" authorized notation is more advanced annotation and it supports the expression based access(ផ្ទាងផ្ទាត់មុនបានធ្វើ)
 
 Ex: All other users will be denied access. with @PreAuthorize មានតែ ID នឹងទេដែលអាចធ្វើការ Deleted នេះបាន
 
 
-- @PostAuthorize : វាអាចអោយគេធ្វើការមុនបាន បន្ទាប់មកបានវាមើលទៅកាន់ Security បន្តទៀត
+- @PostAuthorize : វាអាចអោយគេធ្វើការមុនបាន បន្ទាប់មកបានវាមើលទៅកាន់ Security បន្តទៀត (ធ្វើហើយបាន យក Return នឹងមកផ្ទៀងផ្ទាត់) 
 - returnObject : it is the function inside it (ចឹងវាមើលថាបើវា មិនមានសិទ្ធទេវាមិនអោយ ប្រើប្រាស់ Method នឹងទេ)
 
 -------------------------
