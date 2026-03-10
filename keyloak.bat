@@ -1,6 +1,6 @@
 @echo off
 title Keycloak Manager
-cd /d "C:\Users\home\Desktop\UdemyCourse\Udemy-OAuth2\keycloak\bin"
+cd /d "C:\Users\GE66\Desktop\Udemy-Course\Udemy-OAuth2\keycloak-26.5.5\bin"
 
 :: 1. Start Keycloak MINIMIZED in its own window
 echo Starting Keycloak Server (check taskbar)...
