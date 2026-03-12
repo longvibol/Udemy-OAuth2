@@ -30,7 +30,7 @@ public class AlbumsController {
         		.uri(url).retrieve().bodyToMono(new ParameterizedTypeReference<List<AlbumRest>>() {
 				}).block();
 
-        model.addAttribute("username", albums);
+        model.addAttribute("albums", albums);
 
         return "albums";
     }

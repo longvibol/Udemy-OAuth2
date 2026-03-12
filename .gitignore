@@ -1,3 +1,12 @@
 Keycloak/
 keyloak.bat
 keycloak-26.5.5/
+
+# local config
+application-local.properties
+application-secret.properties
+.env
+
+# build output
+target/
+*.class
