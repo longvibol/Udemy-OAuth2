@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Code reader</title>
+</head>
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const authCode = urlParams.get("code");
+        const state = urlParams.get("state");
+        const error = urlParams.get("error");
+        const errorDescription = urlParams.get("error_description");
+
+        if (error) {
+            alert("The following error took place: " + error + ". Description of error: " + errorDescription);
+        } else {
+            if (window.opener && !window.opener.closed) {
+                window.opener.postMessage({
+                    type: "AUTH_CODE_RECEIVED",
+                    code: authCode,
+                    state: state
+                }, "http://localhost:8181");
+                window.close();
+            } else {
+                alert("Authorization code received.\n\nCode: " + authCode + "\nState: " + state + "\n\nOpen index.html and exchange this code there.");
+            }
+        }
+    </script>
+</body>
+</html>

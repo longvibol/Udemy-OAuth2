@@ -1,0 +1,122 @@
+Keyloak Remote User Authentication
+
+- User storage SPI 
+
+How to configure keyloak server to read user authentication details from a remote storage 
+យើងមាន User សម្រាប់ហើយ ចង់ប្រើប្រាស់ Keyloak ដើម្បីធ្វើការ Authentication 
+
+- Keyloak have it own database = H2 (H2 is not good to use in production) 
+
+- យើងអាចប្រើ MySQL database to store the user database in Keyloak 
+
+- ចឹងពេលដែលយើងបង្កើត Keycloak administration console, the user credentials will be stored 
+
+So when the user login to the keyloak, the keyloak will read from MySQL database 
+
+សម្រាប់ project ដែលមាន user storage ស្រាប់ យើងអាចអោយ Keyloak ធ្វើការ Authenticate User from there 
+
+Ex: Existing Spring boot Web Service (have user database )
+
+1- Spi : Service provider interface 
+
+យើងអាចធ្វើការ implementation with keyloak ដោយប្រើ SPI មានន័យថាក្នុង Spring boot យើងអាចធ្វើការ Implement (User Storage SPI) ដើម្បីអោយ 
+project យើងអាចធ្វើការ Authenticate from the keyloak បាន​
+
+- ចឹងយើងធ្វើការ Bright between our storage Server to the Keyloak 
+
+- User Storage SPI វាជា Java code that we will write package as a jar archive and deploy to Keycloak server  
+
+មានន័យថា Jar file នឹងធ្វើការ communicates directly with our database (JDBC)
+
+- គេធ្វើចឹងដើម្បីធ្វើការ Isolad ពី User from Keyloak to the Spring boot 
+
+
+Gold: 
+
+The goal of this section is to show you how to implement, how to package and how to deploy the user
+
+storage to keycloak.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

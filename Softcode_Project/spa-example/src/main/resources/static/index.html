@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript application with PKCE</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        const KEYCLOAK_BASE_URL = "http://localhost:8080";
+        const REALM = "mywebclient";
+        const CLIENT_ID = "photo-app-PKCE-client";
+        const REDIRECT_URI = "http://localhost:8181/authcodeReader.html";
+        const RESOURCE_URL = "http://localhost:8082/users/status/check";
+
+        function generateState(length) {
+            let stateValue = "";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (let i = 0; i < length; i++) {
+                stateValue += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            document.getElementById("stateValue").textContent = stateValue;
+        }
+
+        function base64urlencode(sourceValue) {
+            const stringValue = String.fromCharCode.apply(null, sourceValue);
+            const base64Encoded = btoa(stringValue);
+            return base64Encoded.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+        }
+
+        function generateCodeVerifier() {
+            const randomByteArray = new Uint8Array(32);
+            window.crypto.getRandomValues(randomByteArray);
+
+            const verifier = base64urlencode(randomByteArray);
+            document.getElementById("codeVerifierValue").textContent = verifier;
+        }
+
+        async function generateCodeChallenge() {
+            const codeVerifier = document.getElementById("codeVerifierValue").textContent;
+
+            if (!codeVerifier) {
+                alert("Generate Code Verifier first.");
+                return;
+            }
+
+            const encoder = new TextEncoder();
+            const encodedValue = encoder.encode(codeVerifier);
+            const digest = await window.crypto.subtle.digest("SHA-256", encodedValue);
+            const codeChallengeValue = base64urlencode(new Uint8Array(digest));
+
+            document.getElementById("codeChallengeValue").textContent = codeChallengeValue;
+        }
+
+        function getAuthCode() {
+            const state = document.getElementById("stateValue").textContent;
+            const codeVerifier = document.getElementById("codeVerifierValue").textContent;
+            const codeChallenge = document.getElementById("codeChallengeValue").textContent;
+
+            if (!state) {
+                alert("Generate state value first.");
+                return;
+            }
+
+            if (!codeVerifier) {
+                alert("Generate Code Verifier first.");
+                return;
+            }
+
+            if (!codeChallenge) {
+                alert("Generate Code Challenge first.");
+                return;
+            }
+
+            sessionStorage.setItem("pkce_state", state);
+            sessionStorage.setItem("pkce_code_verifier", codeVerifier);
+
+            let authorizationURL = `${KEYCLOAK_BASE_URL}/realms/${REALM}/protocol/openid-connect/auth`;
+            authorizationURL += `?client_id=${encodeURIComponent(CLIENT_ID)}`;
+            authorizationURL += `&response_type=code`;
+            authorizationURL += `&scope=${encodeURIComponent("openid profile email")}`;
+            authorizationURL += `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+            authorizationURL += `&state=${encodeURIComponent(state)}`;
+            authorizationURL += `&code_challenge=${encodeURIComponent(codeChallenge)}`;
+            authorizationURL += `&code_challenge_method=S256`;
+
+            window.location.href = authorizationURL;
+        }
+
+        function requestTokens(authCode, returnedState) {
+            const originalState = sessionStorage.getItem("pkce_state");
+            const codeVerifier = sessionStorage.getItem("pkce_code_verifier");
+
+            if (!originalState || !codeVerifier) {
+                alert("Missing PKCE session data. Start login again from index.html.");
+                return;
+            }
+
+            if (returnedState !== originalState) {
+                alert("Invalid state value received.");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: `${KEYCLOAK_BASE_URL}/realms/${REALM}/protocol/openid-connect/token`,
+                data: {
+                    grant_type: "authorization_code",
+                    client_id: CLIENT_ID,
+                    code: authCode,
+                    code_verifier: codeVerifier,
+                    redirect_uri: REDIRECT_URI
+                },
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                success: function(data) {
+                    document.getElementById("accessToken").textContent = data.access_token || "";
+                    document.getElementById("refreshToken").textContent = data.refresh_token || "";
+                    document.getElementById("idToken").textContent = data.id_token || "";
+                    console.log("Token response:", data);
+                    alert("Login successful. Token loaded.");
+                },
+                error: function(xhr) {
+                    console.error("Token request failed:", xhr.responseText);
+                    alert("Token request failed: " + xhr.responseText);
+                }
+            });
+        }
+
+        function getInfoFromResourceServer() {
+            const accessToken = document.getElementById("accessToken").textContent;
+
+            if (!accessToken) {
+                alert("Access token is missing. Login first.");
+                return;
+            }
+
+            $.ajax({
+                type: "GET",
+                url: RESOURCE_URL,
+                headers: {
+                    "Authorization": "Bearer " + accessToken
+                },
+                success: function(data) {
+                    alert(typeof data === "string" ? data : JSON.stringify(data, null, 2));
+                },
+                error: function(xhr) {
+                    console.error("Resource server request failed:", xhr.responseText);
+                    alert("Resource server request failed: " + xhr.responseText);
+                }
+            });
+        }
+
+        window.addEventListener("message", function(event) {
+            if (event.data && event.data.type === "AUTH_CODE_RECEIVED") {
+                requestTokens(event.data.code, event.data.state);
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Index page</h1>
+
+    <p><strong>State:</strong></p>
+    <div id="stateValue" style="word-break: break-all; margin-bottom: 10px;"></div>
+    <div>
+        <input type="button" value="Generate state value" onclick="generateState(30)" />
+    </div>
+
+    <p><strong>Code Verifier:</strong></p>
+    <div id="codeVerifierValue" style="word-break: break-all; margin-bottom: 10px;"></div>
+    <div>
+        <input type="button" value="Generate Code Verifier value" onclick="generateCodeVerifier()" />
+    </div>
+
+    <p><strong>Code Challenge:</strong></p>
+    <div id="codeChallengeValue" style="word-break: break-all; margin-bottom: 10px;"></div>
+    <div>
+        <input type="button" value="Generate Code Challenge value" onclick="generateCodeChallenge()" />
+    </div>
+
+    <br />
+    <div>
+        <input type="button" value="Get Auth Code" onclick="getAuthCode()" />
+    </div>
+
+    <br />
+    <p><strong>Access token:</strong></p>
+    <div id="accessToken" style="word-break: break-all;"></div>
+
+    <p><strong>Refresh token:</strong></p>
+    <div id="refreshToken" style="word-break: break-all;"></div>
+
+    <p><strong>ID token:</strong></p>
+    <div id="idToken" style="word-break: break-all;"></div>
+
+    <br />
+    <div>
+        <input type="button" value="Load" onclick="getInfoFromResourceServer()" />
+    </div>
+</body>
+</html>
